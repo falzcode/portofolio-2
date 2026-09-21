@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naufal | Personal Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B0C10; color: #FFFFFF; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Custom Premium Ambient Shadow Effects */
+        .shadow-elegant {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 
+                        0 1px 1px 0 rgba(255, 255, 255, 0.05) inset;
+        }
+        .shadow-elegant-hover:hover {
+            box-shadow: 0 20px 40px -15px rgba(197, 168, 128, 0.15), 
+                        0 1px 1px 0 rgba(255, 255, 255, 0.1) inset;
+        }
+        .shadow-gold-glow {
+            box-shadow: 0 4px 20px -2px rgba(197, 168, 128, 0.3);
+        }
+        .shadow-gold-glow:hover {
+            box-shadow: 0 10px 25px -2px rgba(197, 168, 128, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#C5A880] selection:text-black">
+
+    <!-- 1. HEADER & NAVIGATION (Simple & Elegant Top Bar) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#0B0C10]/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-serif text-xl font-bold tracking-widest text-[#C5A880]">Naufal Dzaky F.</a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-gray-400">
+                <a href="#home" class="hover:text-[#C5A880] transition-colors duration-300 text-gray-200">Home</a>
+                <a href="#projects" class="hover:text-[#C5A880] transition-colors duration-300">Projects</a>
+                <a href="#about" class="hover:text-[#C5A880] transition-colors duration-300">About</a>
+                <a href="#contact" class="hover:text-[#C5A880] transition-colors duration-300">Contact</a>
+            </nav>
+            <a href="#contact" class="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase border border-[#C5A880] text-[#C5A880] hover:bg-[#C5A880] hover:text-black transition-all duration-300 rounded-sm shadow-elegant">
+                Let's Talk
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,168,128,0.04)_0%,transparent_60%)]"></div>
+        <div class="max-w-4xl text-center z-10">
+            <p class="text-[#C5A880] text-sm font-medium tracking-[0.25em] uppercase mb-4">Editors & UI Designer</p>
+            <h1 class="font-serif text-5xl md:text-7xl font-light tracking-tight leading-tight mb-8">
+                Menciptakan <span class="italic text-[#C5A880]">desain yang bersih</span> & pengalaman digital yang responsif.
+            </h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-base md:text-lg font-light leading-relaxed mb-10">
+                Fokus pada keindahan estetika visual, struktur kode yang rapi, serta fungsionalitas sistem yang mulus.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-4 text-sm font-medium bg-[#C5A880] text-black hover:bg-[#b3956b] transition-all duration-300 rounded-sm font-semibold shadow-gold-glow">
+                    Lihat Project Saya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PROJECTS GALLERY SECTION -->
+    <section id="projects" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Showcase</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-light">Koleksi Project</h2>
+                </div>
+                <p class="text-gray-400 font-light max-w-sm mt-4 md:mt-0 text-sm">
+                    Perancangan desain, dan branding visual kreatif.
+                </p>
+            </div>
+
+            <!-- Grid Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Project Item 1: EDITING PROJECT (thumbnail YouTube, klik -> buka YouTube) -->
+                <!--
+                    CARA MENGGANTI VIDEO:
+                    1. Buka video YouTube kamu, salin link-nya.
+                       Contoh: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                       ID videonya adalah bagian setelah "v=" -> dQw4w9WgXcQ
+                       (untuk link pendek youtu.be/dQw4w9WgXcQ, ID-nya bagian setelah garis miring terakhir)
+                    2. Ganti GANTI_VIDEO_ID di DUA tempat di bawah ini (href dan src gambar).
+                -->
+                <a href="https://youtu.be/Ixbs-JqCMcE?si=ejhP_uxN_ExWUXsnx" target="_blank" rel="noopener noreferrer" class="group block" aria-label="Tonton Editing Project di YouTube">
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video rounded-sm mb-4 relative shadow-elegant shadow-elegant-hover transition-all duration-500 border border-white/5">
+                        <!-- Teks cadangan jika thumbnail gagal dimuat -->
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                            [ Editing Project ]
+                        </div>
+                        <!-- Thumbnail otomatis dari YouTube -->
+                        <img src="https://iili.io/nuCrM12.md.jpg"
+                             alt="Thumbnail Editing Project"
+                             loading="lazy"
+                             onerror="this.style.display='none'"
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/10 to-transparent z-10"></div>
+                        <!-- Tombol play -->
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-[#C5A880]/90 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-7 h-7 text-black ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-1">
+                        <div>
+                            <h3 class="text-lg font-medium group-hover:text-[#C5A880] transition-colors duration-300">Editing Project</h3>
+                            <p class="text-sm text-gray-400 font-light mt-1">Video Editing</p>
+                        </div>
+                        <span class="text-xs font-serif italic text-[#C5A880] mt-1">Project 01</span>
+                    </div>
+                </a>
+
+                <!-- Project Item 2: DESAIN FIGMA (foto desain) -->
+                <!--
+                    CARA MENGGANTI FOTO:
+                    Simpan foto desain kamu di folder "images" (sejajar dengan file index.html),
+                    lalu ganti nama file di src di bawah ini, contoh: images/figma.jpg
+                -->
+                <div class="group">
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video rounded-sm mb-4 relative shadow-elegant shadow-elegant-hover transition-all duration-500 border border-white/5">
+                        <!-- Teks cadangan jika foto belum ada -->
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                            [ Desain Figma ]
+                        </div>
+                        <img src="https://iili.io/nuCL2qJ.md.jpg"
+                             alt="Hasil Desain Figma"
+                             loading="lazy"
+                             onerror="this.style.display='none'"
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent z-10 pointer-events-none"></div>
+                    </div>
+                    <div class="flex justify-between items-start px-1">
+                        <div>
+                            <h3 class="text-lg font-medium group-hover:text-[#C5A880] transition-colors duration-300">Desain Figma</h3>
+                            <p class="text-sm text-gray-400 font-light mt-1">UI/UX Designer</p>
+                        </div>
+                        <span class="text-xs font-serif italic text-[#C5A880] mt-1">Project 02</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION (Minimalist Profile) -->
+    <section id="about" class="py-24 px-6 border-t border-white/5">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+            <!--
+                CARA MENGGANTI FOTO PROFIL:
+                Simpan foto kamu di folder "images" dengan nama profil.jpg
+                (atau ganti nama file di src di bawah ini).
+            -->
+            <div class="w-48 h-48 md:w-64 md:h-64 bg-[#1F2833] rounded-sm flex-shrink-0 shadow-elegant border border-white/10 relative overflow-hidden flex items-center justify-center font-serif text-gray-500 italic">
+                <span>[ Foto Profil ]</span>
+                <img src="https://iili.io/nuC85tR.md.jpg"
+                     alt="Foto profil Naufal Dzaky Firmanda"
+                     onerror="this.style.display='none'"
+                     class="absolute inset-0 w-full h-full object-cover">
+            </div>
+            <div>
+                <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">About Me</p>
+                <h2 class="font-serif text-3xl font-light mb-4">Saya Naufal Dzaky Firmanda</h2>
+                <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-6">
+                    Mahasiswa Universitas Pancasakti Tegal, sekarang saya sedang menempuh S1 Bisnis Digital dan masih semester 5. Saya mempunyai ketertarikan tentang desain UI/UX, saya juga suka mengerjakan desain website atau aplikasi dengan tampilan yang sederhana dan responsif. Selain desain UI/UX, saya juga tertarik pada bidang editing video baik itu film pendek ataupun editan lainnya. Kini saya ingin memperdalam kemampuan saya dibidang UI/UX dan belajar tentang dasar web development. Saya terbuka untuk belajar hal baru dan menambahkan pengalaman saya melalui magang dari Fakultas.
+                </p>
+                <div class="grid grid-cols-2 gap-4 border-t border-white/5 pt-6 text-sm">
+                    <div>
+                        <span class="block text-gray-500 text-xs uppercase tracking-wider">Keahlian</span>
+                        <span class="text-gray-300 font-light">Editing video, System Design, UI/UX</span>
+                    </div>
+                    <div>
+                        <span class="block text-gray-500 text-xs uppercase tracking-wider">Fokus Estetika</span>
+                        <span class="text-gray-300 font-light">Minimalis & Clean Layout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-3">Hubungi saya</p>
+            <h2 class="font-serif text-4xl md:text-5xl font-light mb-6">Mari Mulai Kerja Sama</h2>
+            <p class="text-gray-400 font-light max-w-lg mx-auto mb-12 text-sm md:text-base">
+                Punya ide menarik atau kebutuhan desain untuk dikembangkan? Silakan kirim pesan melalui tautan di bawah ini.
+            </p>
+            
+            <!-- Klik alamat email -> langsung membuka aplikasi email dengan tujuan & subjek sudah terisi -->
+            <div class="inline-block border-b border-[#C5A880] pb-2 group">
+                <a href="mailto:naufaldf85@gmail.com?subject=Halo%20Naufal%2C%20saya%20tertarik%20bekerja%20sama" class="font-serif text-xl md:text-2xl text-[#C5A880] tracking-wide group-hover:text-white transition-colors duration-300">
+                    naufaldf85@gmail.com &rarr;
+                </a>
+            </div>
+
+            <!-- Tombol alternatif: buka langsung Gmail di browser (berguna jika tidak ada aplikasi email di perangkat) -->
+            <div class="mt-8">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=naufaldf85@gmail.com&su=Halo%20Naufal%2C%20saya%20tertarik%20bekerja%20sama"
+                   target="_blank" rel="noopener noreferrer"
+                   class="inline-block px-8 py-4 text-sm font-semibold bg-[#C5A880] text-black hover:bg-[#b3956b] transition-all duration-300 rounded-sm shadow-gold-glow">
+                    Kirim Email via Gmail
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 px-6 border-t border-white/5 text-center text-xs text-gray-500 tracking-wider">
+        <p>&copy; 2026 NAUFAL. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
