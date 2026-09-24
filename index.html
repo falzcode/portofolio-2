@@ -40,6 +40,8 @@
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-gray-400">
                 <a href="#home" class="hover:text-[#C5A880] transition-colors duration-300 text-gray-200">Home</a>
                 <a href="#projects" class="hover:text-[#C5A880] transition-colors duration-300">Projects</a>
+                <a href="#experience" class="hover:text-[#C5A880] transition-colors duration-300">Pengalaman</a>
+                <a href="#skills" class="hover:text-[#C5A880] transition-colors duration-300">Skills</a>
                 <a href="#about" class="hover:text-[#C5A880] transition-colors duration-300">About</a>
                 <a href="#contact" class="hover:text-[#C5A880] transition-colors duration-300">Contact</a>
             </nav>
@@ -122,24 +124,32 @@
                     </div>
                 </a>
 
-                <!-- Project Item 2: DESAIN FIGMA (foto desain) -->
+                <!-- Project Item 2: DESAIN FIGMA (thumbnail YouTube, klik -> buka YouTube) -->
                 <!--
-                    CARA MENGGANTI FOTO:
-                    Simpan foto desain kamu di folder "images" (sejajar dengan file index.html),
-                    lalu ganti nama file di src di bawah ini, contoh: images/figma.jpg
+                    CARA MENGGANTI VIDEO:
+                    1. Buka video YouTube kamu, salin link-nya, lalu ganti href di bawah ini.
+                    2. Thumbnail (src gambar) TETAP dipertahankan seperti sebelumnya, tidak perlu diganti
+                       kecuali kamu memang ingin memakai foto/thumbnail lain.
                 -->
-                <div class="group">
+                <a href="https://youtu.be/VSE31_v3FFA?si=3TKmjVtvXraaEdW4" target="_blank" rel="noopener noreferrer" class="group block" aria-label="Tonton Desain Figma di YouTube">
                     <div class="overflow-hidden bg-[#1F2833] aspect-video rounded-sm mb-4 relative shadow-elegant shadow-elegant-hover transition-all duration-500 border border-white/5">
-                        <!-- Teks cadangan jika foto belum ada -->
+                        <!-- Teks cadangan jika thumbnail gagal dimuat -->
                         <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
                             [ Desain Figma ]
                         </div>
+                        <!-- Thumbnail dipertahankan sama seperti sebelumnya -->
                         <img src="https://iili.io/nuCL2qJ.md.jpg"
                              alt="Hasil Desain Figma"
                              loading="lazy"
                              onerror="this.style.display='none'"
                              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent z-10 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/10 to-transparent z-10"></div>
+                        <!-- Tombol play -->
+                        <div class="absolute inset-0 z-20 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-[#C5A880]/90 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-7 h-7 text-black ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-between items-start px-1">
                         <div>
@@ -148,12 +158,153 @@
                         </div>
                         <span class="text-xs font-serif italic text-[#C5A880] mt-1">Project 02</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 4. ABOUT SECTION (Minimalist Profile) -->
+    <!-- 4. EXPERIENCE SECTION (PKL & Organisasi/HIMANIS) -->
+    <section id="experience" class="py-24 px-6 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Rekam Jejak</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-light">Pengalaman</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Experience Item 1: PKL -->
+                <!--
+                    CARA MENGGANTI FOTO PKL:
+                    Simpan foto kegiatan PKL kamu di folder "images", lalu ganti src di bawah,
+                    contoh: images/pkl.jpg
+                -->
+                <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                            [ Foto PKL ]
+                        </div>
+                        <img src="https://iili.io/nAU40fj.md.jpg" 
+                             alt="Dokumentasi kegiatan PKL"
+                             loading="lazy"
+                             onerror="this.style.display='none'"
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs font-serif italic text-[#C5A880] mb-2">Praktik Kerja Lapangan</p>
+                        <h3 class="text-lg font-medium mb-2">Nama Perusahaan / Instansi PKL</h3>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            Saya pernah PKL di Karoseri Laksana, Ungaran Semarang. Disana saya di tempatkan di bagian casis pada bus, tapi tiap minggu nya di rolling ke bagian lainnya seperti
+                            bagian pendempulan, pengcekkan kebocoran ac dan pemasangan seat/kursi penumpang.
+                        </p>
+                        <p class="text-xs text-gray-500 mt-4 tracking-wide uppercase">04 Juni &ndash; 2024</p>
+                    </div>
+                </div>
+
+                <!-- Experience Item 2: Organisasi / HIMANIS -->
+                <!--
+                    CARA MENGGANTI FOTO HIMANIS:
+                    Simpan foto kegiatan organisasi kamu di folder "images", lalu ganti src di bawah,
+                    contoh: images/himanis.jpg
+                -->
+                <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                            [ Foto HIMANIS ]
+                        </div>
+                        <img src="https://iili.io/nAUR8hv.md.jpg"
+                             alt="Dokumentasi kegiatan organisasi HIMANIS"
+                             loading="lazy"
+                             onerror="this.style.display='none'"
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs font-serif italic text-[#C5A880] mb-2">Organisasi Mahasiswa</p>
+                        <h3 class="text-lg font-medium mb-2">HIMANIS &mdash; Himpunan Mahasiswa Bisnis Digital</h3>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            Saya aktif sebagai anggota Divisi Sport di Himpunan Mahasiswa Bisnis Digital (HIMANIS). Saya juga pernah menjadi Presidium dalam kegiatan Musyawarah Besar (MUBES) dengan kata lain Pergantian Pengurus Himpunan.
+                        </p>
+                        <p class="text-xs text-gray-500 mt-4 tracking-wide uppercase">Semester 3 &ndash; Sekarang</p>
+                    </div>
+                </div>
+
+                <!-- Experience Item 3: Organisasi / ICPS -->
+                <!--
+                    CARA MENGGANTI FOTO ICPS:
+                    Simpan foto kegiatan organisasi kamu di folder "images", lalu ganti src di bawah,
+                    contoh: images/icps.jpg
+                -->
+                <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                            [ Foto ICPS ]
+                        </div>
+                        <img src="https://iili.io/nAUZ68J.md.jpg"
+                             alt="Dokumentasi kegiatan ICPS"
+                             loading="lazy"
+                             onerror="this.style.display='none'"
+                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs font-serif italic text-[#C5A880] mb-2">Organisasi Mahasiswa</p>
+                        <h3 class="text-lg font-medium mb-2">ICPS &mdash; Investor Community Pancasakti</h3>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">
+                            Saya di organisasi ini di tempatkan di Departemen SIM (Sistem Informasi Manajemen),
+                            tugas saya di Departemen SIM yaitu mengedit feed untuk postingan instagram.
+                        </p>
+                        <p class="text-xs text-gray-500 mt-4 tracking-wide uppercase">Semester 3 &ndash; Sekarang</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SKILLS SECTION -->
+    <section id="skills" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Tools</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-light">Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+
+                <!-- Skill: CapCut -->
+                <div class="group flex flex-col items-center text-center p-8 bg-[#0B0C10] rounded-sm border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="w-16 h-16 mb-5 flex items-center justify-center">
+                        <img src="https://iili.io/nAgF4sa.md.png"  alt="Logo CapCut" loading="lazy" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-base font-medium">CapCut</h3>
+                    <p class="text-xs text-gray-500 font-light mt-1">Video Editing</p>
+                </div>
+
+                <!-- Skill: Figma -->
+                <div class="group flex flex-col items-center text-center p-8 bg-[#0B0C10] rounded-sm border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="w-16 h-16 mb-5 flex items-center justify-center">
+                        <img src="https://cdn.simpleicons.org/figma/C5A880" alt="Logo Figma" loading="lazy" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-base font-medium">Figma</h3>
+                    <p class="text-xs text-gray-500 font-light mt-1">UI/UX Design</p>
+                </div>
+
+                <!-- Skill: VS Code -->
+                <div class="group flex flex-col items-center text-center p-8 bg-[#0B0C10] rounded-sm border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
+                    <div class="w-16 h-16 mb-5 flex items-center justify-center">
+                        <img src="https://iili.io/nAgfCyN.md.webp"  alt="Logo Visual Studio Code" loading="lazy" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-base font-medium">VS Code</h3>
+                    <p class="text-xs text-gray-500 font-light mt-1">Web Development</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ABOUT SECTION (Minimalist Profile) -->
     <section id="about" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
             <!--
@@ -188,7 +339,7 @@
         </div>
     </section>
 
-    <!-- 5. CONTACT SECTION -->
+    <!-- 7. CONTACT SECTION -->
     <section id="contact" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
         <div class="max-w-4xl mx-auto text-center">
             <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-3">Hubungi saya</p>
