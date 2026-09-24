@@ -161,9 +161,6 @@
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @media (prefers-reduced-motion: reduce) {
-            .hero-fade { animation: none; opacity: 1; }
-        }
 
         /* ============ THEME TOGGLE BUTTON ============ */
         #theme-toggle svg { transition: opacity 0.25s ease, transform 0.4s ease; }
@@ -171,9 +168,104 @@
         #theme-toggle .icon-sun { display: none; }
         html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
         html[data-theme="light"] #theme-toggle .icon-sun { display: block; }
+
+        /* ============ SCROLL REVEAL ANIMATIONS ============ */
+        /* Base state: elements start hidden/offset, revealed via JS adding .in-view */
+        .reveal-up,
+        .reveal-left,
+        .reveal-right,
+        .reveal-fade,
+        .reveal-scale {
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+                        transform 0.8s cubic-bezier(.22,1,.36,1);
+            will-change: opacity, transform;
+        }
+        .reveal-up { transform: translateY(38px); }
+        .reveal-left { transform: translateX(-34px); }
+        .reveal-right { transform: translateX(34px); }
+        .reveal-scale { transform: scale(0.94); }
+        .reveal-fade { transform: none; }
+
+        .reveal-up.in-view,
+        .reveal-left.in-view,
+        .reveal-right.in-view,
+        .reveal-fade.in-view,
+        .reveal-scale.in-view {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* Stagger children of a group (project grid, experience grid, skills grid) */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(38px);
+            transition: opacity 0.75s cubic-bezier(.22,1,.36,1),
+                        transform 0.75s cubic-bezier(.22,1,.36,1);
+            will-change: opacity, transform;
+        }
+        .reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
+        .reveal-stagger.in-view > *:nth-child(1) { transition-delay: .05s; }
+        .reveal-stagger.in-view > *:nth-child(2) { transition-delay: .16s; }
+        .reveal-stagger.in-view > *:nth-child(3) { transition-delay: .27s; }
+        .reveal-stagger.in-view > *:nth-child(4) { transition-delay: .38s; }
+
+        /* Eyebrow diamond mark grows in on reveal */
+        .reveal-up .text-\[\#C5A880\]::before,
+        .reveal-fade .text-\[\#C5A880\]::before {
+            transform: rotate(45deg) scale(0);
+            transition: transform 0.5s cubic-bezier(.34,1.56,.64,1) 0.35s;
+        }
+        .reveal-up.in-view .text-\[\#C5A880\]::before,
+        .reveal-fade.in-view .text-\[\#C5A880\]::before {
+            transform: rotate(45deg) scale(1);
+        }
+
+        /* Underline draw-in for the contact email link */
+        .underline-draw {
+            position: relative;
+            border-bottom-color: transparent !important;
+        }
+        .underline-draw::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 1px;
+            background: var(--accent-strong);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.9s cubic-bezier(.22,1,.36,1) 0.2s;
+        }
+        .underline-draw.in-view::after { transform: scaleX(1); }
+
+        /* Progress bar showing scroll position */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--accent-strong);
+            z-index: 60;
+            transition: width 0.1s linear;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-fade { animation: none; opacity: 1; }
+            .reveal-up, .reveal-left, .reveal-right, .reveal-fade, .reveal-scale,
+            .reveal-stagger > * , .underline-draw::after {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .reveal-up .text-\[\#C5A880\]::before,
+            .reveal-fade .text-\[\#C5A880\]::before { transform: rotate(45deg) scale(1) !important; transition: none !important; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-[#C5A880] selection:text-black">
+
+    <!-- Scroll progress indicator -->
+    <div id="scroll-progress"></div>
 
     <!-- 1. HEADER & NAVIGATION (Simple & Elegant Top Bar) -->
     <header class="fixed top-0 left-0 w-full z-50 bg-[#0B0C10]/80 backdrop-blur-md border-b border-white/5">
@@ -221,7 +313,7 @@
     <!-- 3. PROJECTS GALLERY SECTION -->
     <section id="projects" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
         <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <div class="reveal-up flex flex-col md:flex-row md:items-end justify-between mb-16">
                 <div>
                     <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Showcase</p>
                     <h2 class="font-serif text-3xl md:text-4xl font-light">Koleksi Project</h2>
@@ -232,7 +324,7 @@
             </div>
 
             <!-- Grid Gallery -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <!-- Project Item 1: EDITING PROJECT (thumbnail YouTube, klik -> buka YouTube) -->
                 <!--
@@ -314,12 +406,12 @@
     <!-- 4. EXPERIENCE SECTION (PKL & Organisasi/HIMANIS/ICPS) -->
     <section id="experience" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-16 text-center">
+            <div class="reveal-up mb-16 text-center">
                 <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Rekam Jejak</p>
                 <h2 class="font-serif text-3xl md:text-4xl font-light">Pengalaman</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <!-- Experience Item 1: PKL -->
                 <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
@@ -399,12 +491,12 @@
     <!-- 5. SKILLS SECTION -->
     <section id="skills" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-16 text-center">
+            <div class="reveal-up mb-16 text-center">
                 <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">Tools</p>
                 <h2 class="font-serif text-3xl md:text-4xl font-light">Skills</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
 
                 <!-- Skill: CapCut -->
                 <div class="group flex flex-col items-center text-center p-8 bg-[#0B0C10] rounded-sm border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
@@ -445,14 +537,14 @@
                 Simpan foto kamu di folder "images" dengan nama profil.jpg
                 (atau ganti nama file di src di bawah ini).
             -->
-            <div class="w-48 h-48 md:w-64 md:h-64 bg-[#1F2833] rounded-sm flex-shrink-0 shadow-elegant border border-white/10 relative overflow-hidden flex items-center justify-center font-serif text-gray-500 italic">
+            <div class="reveal-left w-48 h-48 md:w-64 md:h-64 bg-[#1F2833] rounded-sm flex-shrink-0 shadow-elegant border border-white/10 relative overflow-hidden flex items-center justify-center font-serif text-gray-500 italic">
                 <span>[ Foto Profil ]</span>
                 <img src="profil.jpeg"
                      alt="Foto profil Naufal Dzaky Firmanda"
                      onerror="this.style.display='none'"
                      class="absolute inset-0 w-full h-full object-cover">
             </div>
-            <div>
+            <div class="reveal-right">
                 <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-2">About Me</p>
                 <h2 class="font-serif text-3xl font-light mb-4">Saya Naufal Dzaky Firmanda</h2>
                 <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-6">
@@ -474,7 +566,7 @@
 
     <!-- 7. CONTACT SECTION -->
     <section id="contact" class="py-24 px-6 border-t border-white/5 bg-[#0e1014]">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="reveal-scale max-w-4xl mx-auto text-center">
             <p class="text-[#C5A880] text-xs font-medium tracking-[0.25em] uppercase mb-3">Hubungi saya</p>
             <h2 class="font-serif text-4xl md:text-5xl font-light mb-6">Mari Mulai Kerja Sama</h2>
             <p class="text-gray-400 font-light max-w-lg mx-auto mb-12 text-sm md:text-base">
@@ -482,7 +574,7 @@
             </p>
             
             <!-- Klik alamat email -> langsung membuka aplikasi email dengan tujuan & subjek sudah terisi -->
-            <div class="inline-block border-b border-[#C5A880] pb-2 group">
+            <div class="underline-draw inline-block border-b border-[#C5A880] pb-2 group">
                 <a href="mailto:naufaldf85@gmail.com?subject=Halo%20Naufal%2C%20saya%20tertarik%20bekerja%20sama" class="font-serif text-xl md:text-2xl text-[#C5A880] tracking-wide group-hover:text-white transition-colors duration-300">
                     naufaldf85@gmail.com &rarr;
                 </a>
@@ -523,6 +615,44 @@
                     try { localStorage.setItem('naufal-theme', 'light'); } catch (e) {}
                 }
             });
+        })();
+    </script>
+
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <script>
+        (function () {
+            // Reveal-on-scroll via IntersectionObserver
+            var reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-fade, .reveal-scale, .reveal-stagger');
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        // Toggle both ways: scrolling into view reveals,
+                        // scrolling back out past it reverses the animation.
+                        entry.target.classList.toggle('in-view', entry.isIntersecting);
+                    });
+                }, {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -8% 0px'
+                });
+
+                reveals.forEach(function (el) { observer.observe(el); });
+            } else {
+                // Fallback: no IO support, just show everything
+                reveals.forEach(function (el) { el.classList.add('in-view'); });
+            }
+
+            // Scroll progress bar
+            var progressBar = document.getElementById('scroll-progress');
+            function updateProgress() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = pct + '%';
+            }
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            window.addEventListener('resize', updateProgress);
+            updateProgress();
         })();
     </script>
 
