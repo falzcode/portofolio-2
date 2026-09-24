@@ -249,6 +249,69 @@
             transition: width 0.1s linear;
         }
 
+        /* ============ EXPERIENCE PHOTO SLIDER ============ */
+        [data-slider] .slider-track {
+            transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+        }
+        [data-slider] .slider-prev,
+        [data-slider] .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11,12,16,0.55);
+            color: var(--accent-strong);
+            border: 1px solid rgba(255,255,255,0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease, background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            z-index: 30;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+        }
+        [data-slider]:hover .slider-prev,
+        [data-slider]:hover .slider-next,
+        [data-slider] .slider-prev:focus-visible,
+        [data-slider] .slider-next:focus-visible {
+            opacity: 1;
+        }
+        [data-slider] .slider-prev { left: 10px; }
+        [data-slider] .slider-next { right: 10px; }
+        [data-slider] .slider-prev:hover,
+        [data-slider] .slider-next:hover {
+            background: var(--accent-strong);
+            color: #000;
+        }
+        [data-slider] .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 30;
+        }
+        [data-slider] .slider-dot {
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            border: none;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.45);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        [data-slider] .slider-dot.active {
+            background: var(--accent-strong);
+            width: 16px;
+            border-radius: 4px;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .hero-fade { animation: none; opacity: 1; }
             .reveal-up, .reveal-left, .reveal-right, .reveal-fade, .reveal-scale,
@@ -415,16 +478,42 @@
 
                 <!-- Experience Item 1: PKL -->
                 <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
-                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
-                            [ Foto PKL ]
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative" data-slider>
+                        <div class="slider-track flex h-full" data-track>
+                            <!-- Slide 1 -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto PKL 1 ]
+                                </div>
+                                <img src="foto_pkl.jpeg"
+                                     alt="Dokumentasi kegiatan PKL 1"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <!-- Slide 2 (tambahan) -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto PKL 2 ]
+                                </div>
+                                <img src="sertifikat.jpeg"
+                                     alt="Dokumentasi kegiatan PKL 2"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
                         </div>
-                        <img src="foto_pkl.jpeg" 
-                             alt="Dokumentasi kegiatan PKL"
-                             loading="lazy"
-                             onerror="this.style.display='none'"
-                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent pointer-events-none"></div>
+                        <button type="button" class="slider-prev" aria-label="Foto sebelumnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button type="button" class="slider-next" aria-label="Foto berikutnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                        <div class="slider-dots">
+                            <button type="button" class="slider-dot active" data-index="0" aria-label="Ke foto 1"></button>
+                            <button type="button" class="slider-dot" data-index="1" aria-label="Ke foto 2"></button>
+                        </div>
                     </div>
                     <div class="p-6">
                         <p class="text-xs font-serif italic text-[#C5A880] mb-2">Praktik Kerja Lapangan</p>
@@ -433,22 +522,72 @@
                             Saya pernah PKL di Karoseri Laksana, Ungaran Semarang. Disana saya di tempatkan di bagian casis pada bus, tapi tiap minggu nya di rolling ke bagian lainnya seperti
                             bagian pendempulan, pengcekkan kebocoran ac dan pemasangan seat/kursi penumpang.
                         </p>
-                        <p class="text-xs text-gray-500 mt-4 tracking-wide uppercase">04 Juni &ndash; 2024</p>
+                        <p class="text-xs text-gray-500 mt-4 tracking-wide uppercase">06 Maret &ndash; 06 Mei 2024</p>
                     </div>
                 </div>
 
                 <!-- Experience Item 2: Organisasi / HIMANIS -->
                 <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
-                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
-                            [ Foto HIMANIS ]
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative" data-slider>
+                        <div class="slider-track flex h-full" data-track>
+                            <!-- Slide 1 -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto HIMANIS 1 ]
+                                </div>
+                                <img src="foto_himanis.jpeg"
+                                     alt="Dokumentasi kegiatan organisasi HIMANIS 1"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <!-- Slide 2 (tambahan) -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto HIMANIS 2 ]
+                                </div>
+                                <img src="himanis.jpeg"
+                                     alt="Dokumentasi kegiatan organisasi HIMANIS 2"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <!-- Slide 3 (tambahan) -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto HIMANIS 3 ]
+                                </div>
+                                <img src="himanis1.jpeg"
+                                     alt="Dokumentasi kegiatan organisasi HIMANIS 3"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <!-- Slide 4 (tambahan) -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto HIMANIS 4 ]
+                                </div>
+                                <img src="himanis2.jpeg"
+                                     alt="Dokumentasi kegiatan organisasi HIMANIS 4"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
                         </div>
-                        <img src="foto_himanis.jpeg"
-                             alt="Dokumentasi kegiatan organisasi HIMANIS"
-                             loading="lazy"
-                             onerror="this.style.display='none'"
-                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent pointer-events-none"></div>
+                        <button type="button" class="slider-prev" aria-label="Foto sebelumnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button type="button" class="slider-next" aria-label="Foto berikutnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                        <div class="slider-dots">
+                            <button type="button" class="slider-dot active" data-index="0" aria-label="Ke foto 1"></button>
+                            <button type="button" class="slider-dot" data-index="1" aria-label="Ke foto 2"></button>
+                            <button type="button" class="slider-dot" data-index="2" aria-label="Ke foto 3"></button>
+                            <button type="button" class="slider-dot" data-index="3" aria-label="Ke foto 4"></button>
+                        </div>
                     </div>
                     <div class="p-6">
                         <p class="text-xs font-serif italic text-[#C5A880] mb-2">Organisasi Mahasiswa</p>
@@ -462,16 +601,42 @@
 
                 <!-- Experience Item 3: Organisasi / ICPS -->
                 <div class="group bg-[#0e1014] rounded-sm overflow-hidden border border-white/5 shadow-elegant shadow-elegant-hover transition-all duration-500">
-                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
-                            [ Foto ICPS ]
+                    <div class="overflow-hidden bg-[#1F2833] aspect-video relative" data-slider>
+                        <div class="slider-track flex h-full" data-track>
+                            <!-- Slide 1 -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto ICPS 1 ]
+                                </div>
+                                <img src="foto_icps.jpeg"
+                                     alt="Dokumentasi kegiatan ICPS 1"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <!-- Slide 2 (tambahan) -->
+                            <div class="slider-slide w-full h-full flex-shrink-0 relative overflow-hidden">
+                                <div class="absolute inset-0 flex items-center justify-center text-gray-500 font-serif italic text-xl">
+                                    [ Foto ICPS 2 ]
+                                </div>
+                                <img src="icps.jpeg"
+                                     alt="Dokumentasi kegiatan ICPS 2"
+                                     loading="lazy"
+                                     onerror="this.style.display='none'"
+                                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
                         </div>
-                        <img src="foto_icps.jpeg"
-                             alt="Dokumentasi kegiatan ICPS"
-                             loading="lazy"
-                             onerror="this.style.display='none'"
-                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/10 to-transparent pointer-events-none"></div>
+                        <button type="button" class="slider-prev" aria-label="Foto sebelumnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button type="button" class="slider-next" aria-label="Foto berikutnya">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                        <div class="slider-dots">
+                            <button type="button" class="slider-dot active" data-index="0" aria-label="Ke foto 1"></button>
+                            <button type="button" class="slider-dot" data-index="1" aria-label="Ke foto 2"></button>
+                        </div>
                     </div>
                     <div class="p-6">
                         <p class="text-xs font-serif italic text-[#C5A880] mb-2">Organisasi Mahasiswa</p>
@@ -653,6 +818,89 @@
             window.addEventListener('scroll', updateProgress, { passive: true });
             window.addEventListener('resize', updateProgress);
             updateProgress();
+        })();
+    </script>
+
+    <!-- EXPERIENCE PHOTO SLIDER SCRIPT -->
+    <script>
+        (function () {
+            var sliders = document.querySelectorAll('[data-slider]');
+
+            sliders.forEach(function (slider) {
+                var track = slider.querySelector('[data-track]');
+                var slides = slider.querySelectorAll('.slider-slide');
+                var dots = slider.querySelectorAll('.slider-dot');
+                var prevBtn = slider.querySelector('.slider-prev');
+                var nextBtn = slider.querySelector('.slider-next');
+                var total = slides.length;
+                var index = 0;
+                var autoplayId = null;
+                var AUTOPLAY_MS = 4500;
+
+                if (total <= 1) {
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    var dotsWrap = slider.querySelector('.slider-dots');
+                    if (dotsWrap) dotsWrap.style.display = 'none';
+                    return;
+                }
+
+                function goTo(i) {
+                    index = (i + total) % total;
+                    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                    dots.forEach(function (d, di) {
+                        d.classList.toggle('active', di === index);
+                    });
+                }
+                function next() { goTo(index + 1); }
+                function prev() { goTo(index - 1); }
+
+                function startAutoplay() {
+                    stopAutoplay();
+                    autoplayId = setInterval(next, AUTOPLAY_MS);
+                }
+                function stopAutoplay() {
+                    if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
+                }
+
+                if (nextBtn) nextBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    next();
+                    startAutoplay();
+                });
+                if (prevBtn) prevBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    prev();
+                    startAutoplay();
+                });
+                dots.forEach(function (d, di) {
+                    d.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        goTo(di);
+                        startAutoplay();
+                    });
+                });
+
+                slider.addEventListener('mouseenter', stopAutoplay);
+                slider.addEventListener('mouseleave', startAutoplay);
+
+                // Basic swipe support for touch devices
+                var startX = null;
+                track.addEventListener('touchstart', function (e) {
+                    startX = e.touches[0].clientX;
+                    stopAutoplay();
+                }, { passive: true });
+                track.addEventListener('touchend', function (e) {
+                    if (startX === null) return;
+                    var dx = e.changedTouches[0].clientX - startX;
+                    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+                    startX = null;
+                    startAutoplay();
+                }, { passive: true });
+
+                goTo(0);
+                startAutoplay();
+            });
         })();
     </script>
 
